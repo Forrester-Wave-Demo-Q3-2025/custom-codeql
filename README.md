@@ -16,7 +16,7 @@
         build-mode: ${{ matrix.build-mode }}
         config: | 
           threat-models: local
-
+          
           queries:
             - name: Expands analysis to use the built-in security-extended suite
               uses: security-extended
@@ -27,8 +27,10 @@
             #  - Use an external package:query (precompiled and hosted on the GitHub package registy)
             java:          
               - forrester-wave-demo-q3-2025/codeql-custom-java:WaveSqlTainted.ql
-
-
+          query-filters:
+            # Exclude the default SQL Injection query to replace with the above
+            - exclude:
+                id: java/sql-injection
 ```
 
 ## Pack Creation
