@@ -1,6 +1,6 @@
 # scope/name where is scope is a user or organization that you have write access to.
 name: forrester-wave-demo-q3-2025/codeql-custom-java
-version: 0.0.0
+version: 0.0.2
 dependencies:
   # This uses the latest version of the codeql/java-all library.
   # You may want to change to a more precise semver string.

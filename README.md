@@ -33,6 +33,8 @@
 
 ## Pack Creation
 
+Increment the pack version in .java/qlpack.yml
+
 ```cmd
 unset GITHUB_TOKEN
 gh auth login --scopes "write:packages,read:packages,repo"

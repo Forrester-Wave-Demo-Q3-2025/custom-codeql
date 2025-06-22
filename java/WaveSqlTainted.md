@@ -67,25 +67,40 @@ public AttackResult attack(@RequestParam("userid_sql_only_input_validation") Str
 
 ---
 
-## Example from WebGoat: Custom Input Filtering
+## Example from WebGoat: Custom Input Sanitization with Helper Method
+
+Sanitization for User Names should be peformed using a centralized helper:
 
 ```java
-// src/main/java/org/owasp/webgoat/lessons/sqlinjection/mitigation/SqlOnlyInputValidation.java
+// src/main/java/org/owasp/webgoat/lessons/sqlinjection/advanced/SanitizationHelper.java
+package org.owasp.webgoat.lessons.sqlinjection.advanced;
 
-@PostMapping("/SqlOnlyInputValidation/attack")
-@ResponseBody
-public AttackResult attack(@RequestParam("userid_sql_only_input_validation") String userId) {
-    // Custom filter: disallow spaces
-    if (userId.contains(" ")) {
-        return failed(this).feedback("SqlOnlyInputValidation-failed").build();
+public class SanitizationHelper {
+    public static String SanitizeUsername(String userId) {
+        // Custom sanitizer: remove spaces and special characters
+        return userId.replaceAll("[^a-zA-Z0-9]", "");
     }
+}
+```
+
+Implemented such as:
+
+```java
+// Usage in a controller
+package org.owasp.webgoat.lessons.sqlinjection.advanced;
+
+@PostMapping("/SqlSanitizationHelper/attack")
+@ResponseBody
+public AttackResult attack(@RequestParam("userid") String userId) {
+    // Use the helper method to sanitize input
+    String sanitizedUserId = SanitizationHelper.SanitizeUsername(userId);
     // This approach is not enough to prevent SQL injection!
-    AttackResult attackResult = lesson6a.injectableQuery(userId);
+    AttackResult attackResult = lesson6a.injectableQuery(sanitizedUserId);
     return new AttackResult(...);
 }
 ```
 
-WebGoat's lesson on this code shows that even with filtering, an attacker may still exploit injection vulnerabilities.
+WebGoat's lesson on this code shows that even with custom sanitization, an attacker may still exploit injection vulnerabilities if the sanitizer is insufficient.
 
 ---
 
