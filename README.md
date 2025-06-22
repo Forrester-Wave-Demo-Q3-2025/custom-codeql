@@ -33,4 +33,7 @@ gh codeql pack install ./java
 gh codeql pack create ./java
 
 gh auth token | gh codeql pack publish ./java --github-auth-stdin
+
+gh api "/orgs/Forrester-Wave-Demo-Q3-2025/packages/container/codeql-custom-java"
+
 ```
