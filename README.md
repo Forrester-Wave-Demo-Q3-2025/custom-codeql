@@ -11,12 +11,19 @@
         build-mode: ${{ matrix.build-mode }}
         config: | 
           threat-models: local
-          
+
           queries:
-            - name: Expands analysis to use the built-in extended suite
-              uses: security-extended          
-            - name: Use an external query (run a single query from an external CodeQL pack)
-              uses: Forrester-Wave-Demo-Q3-2025/custom-codeql/java/WaveSqlTainted.ql@main
+            - name: Expands analysis to use the built-in security-extended suite
+              uses: security-extended
+            # - name: Use an external query (run a single query from an external CodeQL repo without pre-compilation)
+            #   uses: Forrester-Wave-Demo-Q3-2025/custom-codeql/java/WaveSqlTainted.ql@main              
+          packs:
+            # For Java and Kotlin analysis
+            #  - Use an external package:query (precompiled and hosted on the GitHub package registy)
+            java:          
+              - forrester-wave-demo-q3-2025/codeql-custom-java:WaveSqlTainted.ql
+
+
 ```
 
 ## Pack Creation
