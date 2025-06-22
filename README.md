@@ -7,6 +7,20 @@
 
 ## Usage
 
+via configuration file
+
+```yml
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+        build-mode: ${{ matrix.build-mode }}
+        config-file: Forrester-Wave-Demo-Q3-2025/custom-codeql/configs/default.yml@main
+```
+
+via inline configuration
+
 ```yml
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
