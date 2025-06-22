@@ -4,6 +4,7 @@
 
 - `forrester-wave-demo-q3-2025/codeql-custom-java` pack (`language: java`)
   - [java/WaveSqlTainted.ql](https://github.com/Forrester-Wave-Demo-Q3-2025/custom-codeql/blob/main/java/WaveSqlTainted.ql)
+    - Customization of [java/sql-injection](https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-089/SqlTainted.ql) 
 
 ## Usage
 
