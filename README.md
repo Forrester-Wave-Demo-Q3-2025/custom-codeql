@@ -1,5 +1,10 @@
 # custom-codeql
 
+## Packs / Queries
+
+- `forrester-wave-demo-q3-2025/codeql-custom-java` pack (`language: java`)
+  - [java/WaveSqlTainted.ql](https://github.com/Forrester-Wave-Demo-Q3-2025/custom-codeql/blob/main/java/WaveSqlTainted.ql)
+
 ## Usage
 
 ```yml
